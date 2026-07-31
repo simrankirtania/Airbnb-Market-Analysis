@@ -25,26 +25,18 @@ Excel Audit  →  SQL Analysis  →  Python EDA & Statistics  →  Power BI Dash
 ## 🗂️ Repository Structure
 
 ```
-├── data/
-│   ├── Listings.csv                                     # 279,712 listings, 30+ fields
-│   └── Reviews.csv                                      # 5.37M reviews (proxy for bookings)
-├── 01_excel_audit/
-│   └── Airbnb_Data_Audit_Report_2.xlsx                  # Data quality audit workbook
-├── 02_sql_analysis/
-│   ├── Airbnb_Marketplace_Intelligence_-_SQL_Analytics.ipynb   # SQLite-based business analysis
-│   └── Airbnb_SQL_Business_Insights_Summary.docx
-├── 03_python_eda/
-│   ├── Airbnb_Python_EDA_Statistical_Insights.ipynb     # EDA, hypothesis tests, ML
-│   └── Airbnb_Multi-City_Dataset_Python_EDA_Statistical_Insights.docx
-├── 04_power_bi/
-│   ├── Airbnb_Global_Marketplace_Intelligence.pbix      # Interactive dashboard (4 pages)
-│   ├── Airbnb_Power_BI_Dashboard_.pdf                   # Static export
-│   └── POWER_BI_DAX.docx                                # All DAX measures & calculated columns
-├── docs/
-│   ├── Data_Set_Dictionary.docx                         # Field-level data dictionary
-│   ├── Airbnb_Marketplace_Intelligence_Project_Business_Questions.docx
-│   └── Airbnb_Executive_Business_Insights_Summary.docx  # Final rollup report
-└── README.md
+Airbnb-Global-Marketplace-Intelligence
+│
+├── 📁 1. Airbnb_Data_Audit_Report
+│   ├── Airbnb_Data_Audit_Report.pdf
+│   └── Airbnb_Data_Audit_Report.xlsx
+│
+├──  0. Airbnb_Marketplace_Intelligence_Project_Business_Questions.pdf
+├──  2. Airbnb Marketplace Intelligence - SQL Analytics.ipynb
+├──  3. Airbnb Marketplace Intelligence - Python EDA & Statistical Insights.ipynb
+├──  4. Airbnb Marketplace Intelligence - Power BI Dashboard.pdf
+├──  LICENSE
+└──  README.md
 ```
 
 ---
@@ -87,7 +79,6 @@ A structured audit workbook (`Read Me → Executive Summary → 6 analysis tabs 
 - Many listings sit **>50% away** from their local city price average — underpriced listings substantially outnumber overpriced ones.
 - In Paris, roughly **70% of neighbourhoods generate ~80% of reviews** — a classic Pareto concentration.
 
-📄 Full write-up: [`Airbnb_SQL_Business_Insights_Summary.docx`](./02_sql_analysis/Airbnb_SQL_Business_Insights_Summary.docx)
 
 ---
 
@@ -110,34 +101,91 @@ A structured audit workbook (`Read Me → Executive Summary → 6 analysis tabs 
 - **Isolation Forest** flagged ~2% of listings as multivariate outliers worth manual review.
 - Paris prices are strongly right-skewed by a small number of luxury listings — median, not mean, is the more honest "typical price" metric.
 
-📄 Full write-up: [`Airbnb_Multi-City_Dataset_Python_EDA_Statistical_Insights.docx`](./03_python_eda/Airbnb_Multi-City_Dataset_Python_EDA_Statistical_Insights.docx)
-
 ---
 
 ## 📊 Stage 4 — Power BI: Executive Dashboard
 
 **Goal:** Turn all of the above into an interactive, filterable tool executives can actually use.
 
-**4 report pages:**
+The final deliverable is a **4-page interactive Power BI dashboard** designed to answer key business questions around marketplace health, pricing, customer demand, host performance, and operational monitoring.
 
-| Page | Purpose |
-|---|---|
-| **Market Health & Growth** | Composite Marketplace Health Score (gauge), KPI cards (listings, hosts, rating, superhost rate, response rate, YoY growth), listings vs. demand-growth combo chart by city |
-| **Regional Market Analysis** | Bubble chart of price (city-standardized z-score) vs. rating by room type, monthly demand-trend lines by city, neighbourhood demand concentration (Pareto) |
-| **Listing Quality Monitoring** | Table of 174 flagged listings (invalid price/capacity/night-range data or persistently low ratings) for operational follow-up |
-| **Executive KPI Cadence** | A one-page playbook defining *what* to track and *how often* (daily/weekly/monthly), tying every visual back to a decision cadence |
+---
 
-**Notable DAX work** (see [`POWER_BI_DAX.docx`](./04_power_bi/POWER_BI_DAX.docx)):
-- A custom **Marketplace Health Score** (0–100) blending rating, Superhost rate, response rate, YoY growth, and review engagement, each weighted by business importance
-- A `flag_reason` calculated column that programmatically classifies data-quality issues (invalid price/capacity, broken night ranges, persistently low ratings with sufficient review volume)
-- City-relative pricing via `price_z_within_city` (removes local-currency/market-level effects for fair cross-city comparison)
-- Pareto-style `Cumulative %` and `Neighbourhood Rank` measures for demand-concentration analysis
-- A full Date dimension table and YoY growth measures built from the Reviews table (used as a demand/booking-activity proxy)
+## 🏠 Page 1 — Market Health & Growth
 
-**Headline dashboard metrics:**
-- Marketplace Health Score: **54.55 / 100** (Target: 75) — signals real, actionable room for improvement, not a vanity metric
-- 279,712 listings · 182,024 hosts · 93.41 average rating · 17.98% Superhost rate · 86.59% response rate · 42.98% YoY growth
-- **174 listings flagged** for invalid data or persistently low ratings, ready for the ops team
+**Business Question**
+- What is the overall health of the Airbnb marketplace?
+- Which cities present the greatest growth opportunities?
+
+**Highlights**
+- Executive KPI Cards
+- Marketplace Health Score
+- Market Size vs YoY Growth
+- Interactive slicers
+
+### Dashboard Preview
+
+<p align="center">
+<img width="1342" height="751" alt="image" src="https://github.com/user-attachments/assets/9a2b5036-d45f-4772-8b0a-f173a484d9d3" />
+</p>
+
+
+---
+
+## 🌍 Page 2 — Marketplace & Demand Analysis
+
+**Business Question**
+- How do pricing, quality, and customer demand vary across regions?
+
+**Highlights**
+- Pricing vs Guest Rating Analysis
+- Monthly Demand Trends
+- Neighbourhood Demand Concentration (Pareto Analysis)
+- Cross-filtering between visuals
+
+### Dashboard Preview
+
+<p align="center">
+  <img width="668" height="376" alt="Screenshot 2026-07-31 003621" src="https://github.com/user-attachments/assets/a1574d49-d1a7-4991-a92e-e9c15d962bc9" />
+</p>
+
+---
+
+## 🚩 Page 3 — Needs Operational Attention
+
+**Business Question**
+- Which listings require operational attention?
+
+**Highlights**
+- Flagged Listings Table
+- Data Quality Issues
+- Low-Rated Listings
+- Invalid Pricing & Night Rules
+
+### Dashboard Preview
+
+<p align="center">
+  <img width="667" height="365" alt="Screenshot 2026-07-31 003635" src="https://github.com/user-attachments/assets/2a73e2c7-8090-4cd2-9b8b-c842d6207934" />
+</p>
+
+---
+
+## 📅 Page 4 — Executive KPI Cadence
+
+**Business Question**
+- What should executives monitor daily, weekly, and monthly?
+
+**Highlights**
+- KPI Monitoring Framework
+- Operational Priorities
+- Executive Reporting Schedule
+- Decision Support Guide
+
+### Dashboard Preview
+
+<p align="center">
+  <img width="668" height="369" alt="image" src="https://github.com/user-attachments/assets/1bb7def3-9715-4d9e-aa40-b41694e813aa" />
+</p>
 
 ---
 
@@ -175,4 +223,4 @@ Public multi-city Airbnb listings and reviews data (Listings ~152 MB, Reviews ~2
 Built as a portfolio project to demonstrate a complete, production-style analytics workflow — from raw, messy data to an executive decision-making tool — with an emphasis on **honest, defensible insights** (e.g., explicitly reporting the Random Forest's limited explanatory power rather than overstating model performance).
 
 **Author:** Simran Kirtania — MSc Economics, aspiring Data Analyst
-📧 [Add your email] · 🔗 [Add your LinkedIn] · 🌐 [Portfolio](https://simrankirtaniaportfolio.netlify.app)
+📧 simrankirtania02@gmail.com · 🔗 [LinkedIn](https://www.linkedin.com/in/simrankirtania/) · 🌐 [Portfolio](https://simrankirtaniaportfolio.netlify.app)
