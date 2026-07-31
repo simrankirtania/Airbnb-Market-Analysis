@@ -107,8 +107,6 @@ A structured audit workbook (`Read Me → Executive Summary → 6 analysis tabs 
 
 **Goal:** Turn all of the above into an interactive, filterable tool executives can actually use.
 
-The final deliverable is a **4-page interactive Power BI dashboard** designed to answer key business questions around marketplace health, pricing, customer demand, host performance, and operational monitoring.
-
 ---
 
 ## 🏠 Page 1 — Market Health & Growth
@@ -214,7 +212,7 @@ The final deliverable is a **4-page interactive Power BI dashboard** designed to
 
 ## 📁 Data Source
 
-Public multi-city Airbnb listings and reviews data (Listings ~152 MB, Reviews ~244 MB — hosted externally / via Git LFS due to GitHub file-size limits; see `data/README.md` for download instructions if not included in this repo).
+Public multi-city Airbnb listings and reviews data (Listings ~152 MB, Reviews ~244 MB — hosted externally due to GitHub file-size limits.
 
 ---
 
