@@ -186,11 +186,7 @@ A structured audit workbook (`Read Me → Executive Summary → 6 analysis tabs 
 </p>
 
 ---
-Headline dashboard metrics:
 
-Marketplace Health Score: 54.55 / 100 (Target: 75) — signals real, actionable room for improvement, not a vanity metric
-279,712 listings · 182,024 hosts · 93.41 average rating · 17.98% Superhost rate · 86.59% response rate · 42.98% YoY growth
-174 listings flagged for invalid data or persistently low ratings, ready for the ops team
 ## 🎯 Key Business Recommendations
 
 1. **Pricing guidance:** Systematically flag and message underpriced listings (which outnumber overpriced ones) — a direct host-revenue lever.
